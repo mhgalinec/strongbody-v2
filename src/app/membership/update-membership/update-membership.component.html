@@ -1,0 +1,61 @@
+<h3>{{memberName}}</h3>
+ <div class="container">
+ 	
+ 	<form (ngSubmit)="onSubmit()" #f="ngForm">
+		<mat-form-field appearance="outline" class="form-field">
+  		<mat-label>Registration Date</mat-label>
+  			<input matInput [matDatepicker]="datepicker" name="registrationDate" required [(ngModel)]="membership.registrationDate">
+  		<mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+ 		<mat-datepicker #datepicker>
+    		<mat-datepicker-actions>
+      			<button mat-button matDatepickerCancel>Cancel</button>
+      			<button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+   			</mat-datepicker-actions>
+  		</mat-datepicker>
+		</mat-form-field>
+<br>
+		<mat-form-field appearance="outline" class="form-field">
+  		<mat-label>Valid From - Valid Through</mat-label>
+  		<mat-date-range-input [rangePicker]="rangePicker">
+    		<input matStartDate placeholder="Valid From" name="validFrom" required [(ngModel)]="membership.validFrom">
+    		<input matEndDate placeholder="Valid Through" name="validThrough" required [(ngModel)]="membership.validThrough">
+  		</mat-date-range-input>
+  		<mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+  		<mat-date-range-picker #rangePicker>
+    	<mat-date-range-picker-actions>
+      		<button mat-button matDateRangePickerCancel>Cancel</button>
+      		<button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+    	</mat-date-range-picker-actions>
+  		</mat-date-range-picker>
+		</mat-form-field>
+<br>
+   <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Service Level</mat-label>
+    <mat-select name="serviceLevel" id="serviceLevel" required [(ngModel)]="membership.serviceLevel">
+      <mat-option value="1x Week">1x Week</mat-option>
+      <mat-option value="2x Week">2x Week</mat-option>
+      <mat-option value="3x Week">3x Week</mat-option>
+      <mat-option value="4x Week">4x Week</mat-option>
+      <mat-option value="5x Week">5x Week</mat-option>
+      <mat-option value="6x Week">6x Week</mat-option>
+      <mat-option value="Unlimited">Unlimited</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+     <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Membership Type</mat-label>
+    <mat-select name="membershipType" id="membershipType" required [(ngModel)]="membership.membershipType">
+      <mat-option value="Daily">Daily</mat-option>
+      <mat-option value="Weekly">Weekly</mat-option>
+      <mat-option value="Monthly">Monthly</mat-option>
+      <mat-option value="Trimester">Trimester</mat-option>
+      <mat-option value="Biannual">Biannual</mat-option>
+      <mat-option value="Annual">Annual</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <div class="button">
+	<button type="submit" [disabled]="f.form.invalid" class="btn btn-success">Submit</button>
+	</div>
+ 	</form>
+ </div>

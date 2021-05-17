@@ -1,0 +1,24 @@
+table{
+	width: 100%;
+	margin-bottom:30px;
+}
+
+th{
+	text-transform:uppercase;
+}
+td{
+	height:100px;
+}
+
+h4{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.btn{
+	margin-right:5px;
+}
+.mat-raised-button.mat-accent:hover{
+	color:white;
+}
+

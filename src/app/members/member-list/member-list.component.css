@@ -1,0 +1,42 @@
+.container{
+	height:670px;
+	overflow:auto;
+}
+table {
+  width: 100%;
+}
+.column{
+	cursor:pointer;
+}
+.header{
+	text-transform:uppercase;
+}
+
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+  margin-bottom:2px;
+}
+.mat-raised-button{
+	margin-right:5px;	
+}
+.mat-raised-button.mat-accent:hover{
+	color:white;
+}

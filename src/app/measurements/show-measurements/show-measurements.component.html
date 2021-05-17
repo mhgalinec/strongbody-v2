@@ -1,0 +1,53 @@
+
+<!-- Show table if at least one measurement object is present -->
+<div *ngIf="measurements[0]; else noMeasurements">
+<h4>{{memberName}}</h4>
+<div class="container mat-elevation-z8">
+
+	<table mat-table [dataSource]="measurements" multiTemplateDataRows>
+		<ng-container matColumnDef="{{column}}"
+			*ngFor="let column of displayedColumns">
+		<th mat-header-cell *matHeaderCellDef class="header">{{column}}</th>
+		<td mat-cell *matCellDef="let element" class="column">
+			{{element[column]}}</td>
+		
+			
+		</ng-container>
+
+		<!--  Expanded Content Column - The detail row is made up of this one column that spans across all columns-->
+		<ng-container matColumnDef="expandedDetail">
+		<td mat-cell *matCellDef="let measurement"
+			[attr.colspan]="displayedColumns.length">
+			<div class="element-detail" 
+				[@detailExpand]="measurement == expandedElement ? 'expanded' : 'collapsed'">
+				<button mat-raised-button class="btn" color="accent" (click)="updateMeasurement(measurement.id,memberName)">Update</button>
+				<button mat-raised-button class="btn" color="warn" (click)="deleteMeasurement(measurement.id)">Delete</button>
+			</div>
+		</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+		<tr mat-row *matRowDef="let element; columns: displayedColumns;"
+			class="element-row"
+			[class.example-expanded-row]="expandedElement === element"
+			(click)="expandedElement = expandedElement === element ? null : element">
+		</tr>
+
+		<tr mat-row *matRowDef="let row; columns: ['expandedDetail']"
+			class="detail-row"></tr>
+			
+	</table>
+</div> 
+
+<button mat-raised-button class="btn" color="accent" (click)="createMeasurement()">Add Measurement</button>
+</div>
+
+<ng-template #noMeasurements>
+<h4>No measurements avilable. Would you like to create one?</h4>
+<button mat-raised-button class="btn" color="accent" (click)="createMeasurement()">Add Measurement</button>
+</ng-template>
+
+
+
+
+

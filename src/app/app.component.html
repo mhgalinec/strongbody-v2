@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+        <a [routerLink]="['/members']" class="nav-link" routerLinkActive="active">Member List</a>
+    </li>
+     <li class="nav-item">
+        <a routerLink="add" class="nav-link" routerLinkActive="active">Add Member</a>
+    </li> 
+    <!-- Used for testing -->
+    <li class="nav-item">
+        <a [routerLink]="['/membership']" class="nav-link" routerLinkActive="active">Membership List</a>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <br>
+  <h2 style="text-align: center;">{{title}}</h2>
+  <hr>  
+ 
+    <router-outlet></router-outlet>
+
+<footer class="footer">
+  <div class="container">
+      <span></span>
+  </div>
+</footer>
+</div>

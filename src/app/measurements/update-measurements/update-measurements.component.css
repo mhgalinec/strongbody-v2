@@ -1,0 +1,19 @@
+h4{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+mat-form-field{
+	width:49%;
+	margin-left:5px;
+	margin-bottom:3px;
+}
+.button{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.btn{
+	margin-top:5px;
+	width:160px;
+}

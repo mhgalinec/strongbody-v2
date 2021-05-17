@@ -1,0 +1,42 @@
+<div style="margin-top: 50px;" class="container">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 style="text-align: center;">Membership List</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead class="text-center">
+        <tr>
+          <th>ID</th>
+          <th>Registration Date</th>
+          <th>Valid From</th>
+		      <th>Valid Through</th>
+		      <th>Service Level</th>
+          <th>Payment Status</th>
+          <th>Membership Type</th>
+          <th>Member ID</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr *ngFor="let membership of membership | async">
+          <td>{{membership.id}}</td>
+          <td>{{membership.registrationDate}}</td>
+		      <td>{{membership.validFrom}}</td>
+		      <td>{{membership.validThrough}}</td>
+		      <td>{{membership.serviceLevel}}</td>
+          <td>{{membership.paymentStatus}}</td>
+          <td>{{membership.membershipType}}</td>
+          <td>{{membership.memberID}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="updateMembership(membership.id)">Update</button>
+          </td>
+
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+

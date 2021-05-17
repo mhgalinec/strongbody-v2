@@ -1,0 +1,42 @@
+.container{
+	display:flex;
+	justify-content:center;
+	align-items: center;
+}
+.radio,#sex-label{
+	display:flex;
+	justify-content:center;
+	align-items: center;
+	margin-bottom:10px;
+}
+.radio-validation{
+	display:flex;
+	justify-content:center;
+	align-items: center;
+	color:red;
+	letter-spacing:2px;
+}
+.mat-form-field{
+	width:500px;
+	margin-bottom:10px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 20px;
+  
+}
+
+#sex-label,#sex{
+	display:flex;
+	margin-left:2px;
+}
+.button {
+	text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+.btn{
+	width:130px;
+}
+
+
