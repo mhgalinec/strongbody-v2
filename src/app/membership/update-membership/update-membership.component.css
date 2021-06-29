@@ -1,18 +1,22 @@
-h3,.container{
+.title{
 	display:flex;
 	justify-content:center;
 	align-items: center;
 }
 
-.form-field{
-	width:500px;
-	margin-bottom:5px;
+form{
+  text-align: center;
 }
+
+.form-field{
+	width:50%;
+	margin-bottom:10px;
+}
+
 .button {
 	text-align: center;
-    display: block;
-    margin: 0 auto;
 }
+
 .btn{
-	width:130px;
+	width:8em;
 }

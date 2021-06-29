@@ -1,23 +1,26 @@
 
 <div class="container mat-elevation-z8">
 	<table mat-table [dataSource]="members" multiTemplateDataRows>
-		<ng-container matColumnDef="{{column}}"
-			*ngFor="let column of displayedColumns">
-		<th mat-header-cell *matHeaderCellDef class="header">{{column}}</th>
+		<ng-container matColumnDef="{{column.name}}"
+			*ngFor="let column of columns">
+		<th mat-header-cell *matHeaderCellDef class="header">{{column.display}}</th>
 		<td mat-cell *matCellDef="let element" class="column">
-			{{element[column]}}</td>
+			{{element[column.name]}}</td>
+
+
 		</ng-container>
 
 		<!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
 		<ng-container matColumnDef="expandedDetail">
 		<td mat-cell *matCellDef="let member"
 			[attr.colspan]="displayedColumns.length">
-			<div class="element-detail" 
+			<div class="element-detail"
 				[@detailExpand]="member == expandedElement ? 'expanded' : 'collapsed'">
-				
+
 				<button mat-raised-button class="btn" color="primary"
 					(click)="showMembershipByMemberID(member.id,member.fullName)">Membership</button>
-				<button mat-raised-button class="btn" color="primary" 
+
+				<button mat-raised-button class="btn" color="primary"
 					(click)="showMeasurementsByMemberID(member.id,member.fullName)">Measurements</button>
 
 				<button mat-raised-button class="btn" color="accent"
@@ -38,6 +41,8 @@
 
 		<tr mat-row *matRowDef="let row; columns: ['expandedDetail']"
 			class="detail-row"></tr>
+
+
 	</table>
 </div>
 

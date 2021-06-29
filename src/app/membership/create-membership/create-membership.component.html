@@ -1,6 +1,5 @@
-<h4>{{memberName}}</h4>
- <div class="container">
- 	
+<h4 class="title">{{memberName}}</h4>
+
  	<form (ngSubmit)="onSubmit()" #f="ngForm">
 		<mat-form-field appearance="outline" class="form-field">
   		<mat-label>Registration Date</mat-label>
@@ -58,4 +57,3 @@
 	<button type="submit" class="btn btn-success" [disabled]="f.form.invalid">Submit</button>
 	</div>
  	</form>
- </div>

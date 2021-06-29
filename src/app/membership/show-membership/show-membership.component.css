@@ -1,24 +1,40 @@
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container{
+  width:100%;
+  overflow:auto;
+}
 table{
 	width: 100%;
 	margin-bottom:30px;
 }
 
-th{
-	text-transform:uppercase;
+.mat-header-cell{
+	text-transform:capitalize;
+  font-size: 1em;
+  padding-right: 10px;
 }
-td{
-	height:100px;
+.mat-cell{
+	height:7em;
+  padding-right: 10px;
 }
 
-h4{
-	display:flex;
-	justify-content:center;
-	align-items:center;
-}
-.btn{
+.btn-update,.btn-delete{
+  width:7em;
 	margin-right:5px;
+  margin-bottom: 10px;
 }
 .mat-raised-button.mat-accent:hover{
 	color:white;
+}
+
+.alert{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-weight:500;
 }
 

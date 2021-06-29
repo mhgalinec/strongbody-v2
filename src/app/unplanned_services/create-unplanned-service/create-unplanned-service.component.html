@@ -1,0 +1,34 @@
+<h4 class="title">{{equipmentName}}</h4>
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Fault Type</mat-label>
+    <input matInput type="text" id="faultType" name="faultType" [(ngModel)]="service.faultType" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Fault Date</mat-label>
+    <input matInput [matDatepicker]="picker" id="dateOfFault" name="dateOfFault" [(ngModel)]="service.dateOfFault" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle><mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Warranty</mat-label>
+    <mat-select id="warranty" name="warranty" [(ngModel)]="service.warranty" required>
+      <mat-option value="Yes">Yes</mat-option>
+      <mat-option value="No">No</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Price</mat-label>
+    <input matInput type="text" id="price" name="price" [(ngModel)]="service.price" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Service Company</mat-label>
+    <input matInput type="text" id="serviceCompany" name="serviceCompany" [(ngModel)]="service.serviceCompany" required>
+  </mat-form-field>
+  <div class="button">
+    <button [disabled]="f.form.invalid" class="btn btn-success" type="submit">Submit</button>
+  </div>
+</form>

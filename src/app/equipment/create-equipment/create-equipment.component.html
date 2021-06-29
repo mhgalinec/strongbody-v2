@@ -1,0 +1,67 @@
+
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
+		<mat-form-field appearance="outline">
+			<mat-label>Equipment Name</mat-label>
+			<input matInput id="equipment" name="equipment" required [(ngModel)]="equipment.name" >
+		</mat-form-field>
+		<br>
+		<mat-form-field appearance="outline">
+			<mat-label>Serial No</mat-label>
+			<input matInput id="serialNumber" name="serialNumber" required [(ngModel)]="equipment.serialNumber">
+		</mat-form-field>
+		<br>
+		<mat-form-field appearance="outline">
+			<mat-label>Category</mat-label>
+			<mat-select id="category" name="category" required [(ngModel)]="equipment.category" >
+        <mat-option value="Neck">Neck</mat-option>
+        <mat-option value="Shoulders">Shoulders</mat-option>
+        <mat-option value="Chest">Chest</mat-option>
+        <mat-option value="Back">Back</mat-option>
+        <mat-option value="Abs">Abs</mat-option>
+        <mat-option value="Biceps">Biceps</mat-option>
+        <mat-option value="Triceps">Triceps</mat-option>
+        <mat-option value="Forearms">Forearms</mat-option>
+        <mat-option value="Glutes">Glutes</mat-option>
+        <mat-option value="Quadriceps">Quadriceps</mat-option>
+        <mat-option value="Hamstrings">Hamstrings</mat-option>
+        <mat-option value="Calves">Calves</mat-option>
+        <mat-option value="Full Body">Full Body</mat-option>
+        <mat-option value="Cardio">Cardio</mat-option>
+			</mat-select>
+      <mat-hint>Primary target</mat-hint>
+		</mat-form-field>
+		<br>
+		<mat-form-field appearance="outline">
+			<mat-label>Manufacturer</mat-label>
+			<input matInput id="manufacturer" name="manufacturer" required [(ngModel)]="equipment.manufacturer" >
+		</mat-form-field>
+		<br>
+		<mat-form-field appearance="outline">
+			<mat-label>Width</mat-label>
+			<input matInput appNumbersOnly id="width" name="width" [(ngModel)]="equipment.width" onPaste="return false" onDrop="return false">
+      <span matSuffix>mm</span>
+		</mat-form-field>
+		<br>
+		<mat-form-field appearance="outline">
+			<mat-label>Length</mat-label>
+			<input matInput appNumbersOnly id="length" name="length" [(ngModel)]="equipment.length" onPaste="return false" onDrop="return false">
+      <span matSuffix>mm</span>
+		</mat-form-field>
+		<br>
+		<mat-form-field appearance="outline">
+			<mat-label>Height</mat-label>
+			<input matInput appNumbersOnly id="height" name="height" [(ngModel)]="equipment.height" onPaste="return false" onDrop="return false">
+      <span matSuffix>mm</span>
+		</mat-form-field>
+		<br>
+		<mat-form-field appearance="outline">
+			<mat-label>Weight</mat-label>
+			<input matInput appNumbersOnly id="weight" name="weight" [(ngModel)]="equipment.weight" onPaste="return false" onDrop="return false">
+      <span matSuffix>mm</span>
+		</mat-form-field>
+		<br>
+		<div class="button">
+	<button [disabled]="f.form.invalid" type="submit" class="btn btn-success">Submit</button>
+</div>
+</form>
+

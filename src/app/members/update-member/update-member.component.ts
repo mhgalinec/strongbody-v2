@@ -19,36 +19,39 @@ export class UpdateMemberComponent implements OnInit {
 
 
   ngOnInit() {
-    //Show the selected members info on page load
     this.member = new Member();
     this.id = this.route.snapshot.params['id'];
 
-    this.memberService.getMember(this.id).subscribe(data => {
-        this.member = data;
-      },error => console.log(error));
+    //Show the selected members info on page load
+    this.getMember();
+  }
 
+  getMember(){
+    this.memberService.getMember(this.id).subscribe(data => {
+      this.member = data;
+    },error => console.log(error));
+  }
+
+  updateMember(){
+      this.memberService.updateMember(this.id, this.member).subscribe(() => {
+          this.member = new Member();
+          this.gotoList();
+        },() => this.openDialog());
   }
 
   openDialog(){
-	this.dialog.open(DialogElement);
-}
-
-  updateMember(){
-    //Update the current member with the new data
-      this.memberService.updateMember(this.id, this.member).subscribe(data => {
-          this.member = data;
-        },() => this.openDialog());
-      //Navigate back to member list after submitting the updated data
-      this.gotoList();
-    }
+	  this.dialog.open(DialogElement);
+  }
 
   onSubmit(){
     this.updateMember();
   }
 
   gotoList(){
-    this.router.navigate(['/members']);
+    this.router.navigate(['member-list']);
   }
+
+
 
 
 }

@@ -1,33 +1,33 @@
 
-<!--  Show table if a membership object is present -->
-<div *ngIf="membership[0];else noMembership">
-<h4>{{memberName}}</h4>
+
+<div *ngIf="membership?.length > 0; else loading">
+
+<div *ngIf="membership[0];else empty">
+
+<h4 class="title">{{memberName}}</h4>
+<div class="container ">
 <table mat-table [dataSource]="membership" class="mat-elevation-z8">
-	<ng-container matColumnDef="id">
-		<th mat-header-cell *matHeaderCellDef>ID</th>
-		<td mat-cell *matCellDef="let membership">{{membership.id}}</td>
-	</ng-container>
-	
+
 	<ng-container matColumnDef="registrationDate">
 		<th mat-header-cell *matHeaderCellDef>Registration Date</th>
 		<td mat-cell *matCellDef="let membership">{{membership.registrationDate}}</td>
 	</ng-container>
-	
+
 	<ng-container matColumnDef="validFrom">
 		<th mat-header-cell *matHeaderCellDef>Valid From</th>
 		<td mat-cell *matCellDef="let membership">{{membership.validFrom}}</td>
 	</ng-container>
-	
+
 	<ng-container matColumnDef="validThrough">
 		<th mat-header-cell *matHeaderCellDef>Valid Through</th>
 		<td mat-cell *matCellDef="let membership">{{membership.validThrough}}</td>
 	</ng-container>
-	
+
 	<ng-container matColumnDef="serviceLevel">
 		<th mat-header-cell *matHeaderCellDef>Service Level</th>
 		<td mat-cell *matCellDef="let membership">{{membership.serviceLevel}}</td>
 	</ng-container>
-	
+
 	<ng-container matColumnDef="membershipType">
 		<th mat-header-cell *matHeaderCellDef>Membership Type</th>
 		<td mat-cell *matCellDef="let membership">{{membership.membershipType}}</td>
@@ -36,16 +36,19 @@
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<button mat-raised-button class="btn" color="accent" (click)="updateMembership(membership[0].id,memberName)">Update</button>
-<button mat-raised-button class="btn" color="warn" (click)="deleteMembership(id)">Delete</button>
-
+<button mat-raised-button class="btn btn-update" color="accent" (click)="updateMembership(membership[0].id,memberName)">Update</button>
+<button mat-raised-button class="btn btn-delete" color="warn" (click)="deleteMembership(id)">Delete</button>
+</div>
 </div>
 
-<ng-template #noMembership>
+<ng-template #empty>
+	<h4 class="alert alert-warning">This member has no membership yet. Would you like to create one?</h4>
+	<button mat-raised-button class="btn btn-create" color="accent" (click)="createMembership(id,memberName)">Add Membership</button>
+</ng-template>
+</div>
 
-<h4>No membership avilable.Would you like to create one?</h4>
-<button mat-raised-button class="btn" color="accent" (click)="createMembership(id,memberName)">Add Membership</button>
-
+<ng-template #loading>
+	<h4>Loading Data...Please Wait.</h4>
 </ng-template>
 
 

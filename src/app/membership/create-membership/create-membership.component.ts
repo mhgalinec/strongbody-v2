@@ -15,47 +15,43 @@ export class CreateMembershipComponent implements OnInit {
   id: number;
   memberName:string;
   membership: Membership;
- 
 
   range = new FormGroup({
-	validFrom:new FormControl(),
-	validThrough:new FormControl()
-})
-
+	  validFrom:new FormControl(),
+	  validThrough:new FormControl()
+  });
 
   constructor(private membershipService: MembershipService, private router: Router, private route: ActivatedRoute,
               public dialog:MatDialog) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.membership = new Membership();
+
     //Get the member ID and name for the member you want to create the membership
     this.id = this.route.snapshot.params['id'];
-	this.memberName = this.route.snapshot.params['name'];
-	
-    this.membership = new Membership();
+	  this.memberName = this.route.snapshot.params['name'];
+
   }
 
-  save(){
+  createMembership(){
     // Create membership with user entered data
     this.membershipService.createMembership(this.id,this.membership).subscribe(data => {
         this.membership = data;
-        
-	//Open an error dialog if the user has left required fields empty
+        this.gotoList();
+	  //Open an error dialog if the user has left required fields empty
     },() => this.openDialog());
   }
 
   openDialog(){
-
-	this.dialog.open(DialogElement);
+    this.dialog.open(DialogElement);
   }
 
   onSubmit(){
-    this.save();
-	this.gotoList();
-
+    this.createMembership();
   }
 
   gotoList(){
-    this.router.navigate(['members']);
+    this.router.navigate(['member-list']);
   }
 
 }

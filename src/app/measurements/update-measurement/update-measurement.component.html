@@ -1,9 +1,8 @@
-
 <div class="container">
 	<h4>{{memberName}}</h4>
 	<form (ngSubmit)="onSubmit()" #f="ngForm">
 
-		<mat-form-field appearance="outline"> <mat-label>Measurement Date</mat-label> 
+		<mat-form-field appearance="outline"> <mat-label>Measurement Date</mat-label>
 		<input matInput [matDatepicker]="picker" id="measurementDate"
 			required [(ngModel)]="measurement.measurementDate"
 			name="measurementDate"> <mat-datepicker-toggle matSuffix
@@ -22,55 +21,50 @@
 			matSuffix>kg</span> </mat-form-field>
 
 
-		<mat-form-field appearance="outline"> <mat-label>Body Fat</mat-label> 
-		<input matInput type="text" appNumbersOnly id="bodyFat" 
+		<mat-form-field appearance="outline"> <mat-label>Body Fat</mat-label>
+		<input matInput type="text" appNumbersOnly id="bodyFat"
 			[(ngModel)]="measurement.bodyFat" name="bodyFat" onPaste="return false" onDrop="return false"> <span
 			matSuffix>%</span> </mat-form-field>
 		<br>
 		<mat-form-field appearance="outline"> <mat-label>Shoulders</mat-label>
-		<input matInput type="text" appNumbersOnly id="shoulders" 
+		<input matInput type="text" appNumbersOnly id="shoulders"
 			[(ngModel)]="measurement.shoulders" name="shoulders" onPaste="return false" onDrop="return false"> <span
-			matSuffix>cm</span> <mat-hint>Circumference</mat-hint> </mat-form-field>
+			matSuffix>cm</span>  </mat-form-field>
 
 		<mat-form-field appearance="outline"> <mat-label>Torso</mat-label>
-		<input matInput type="text" appNumbersOnly id="torso" 
+		<input matInput type="text" appNumbersOnly id="torso"
 			[(ngModel)]="measurement.torso" name="torso" onPaste="return false" onDrop="return false"> <span matSuffix>cm</span>
-		<mat-hint>Circumference</mat-hint> </mat-form-field>
+		 </mat-form-field>
 		<br>
 		<mat-form-field appearance="outline"> <mat-label>Waist</mat-label>
-		<input matInput type="text" appNumbersOnly id="waist" 
+		<input matInput type="text" appNumbersOnly id="waist"
 			[(ngModel)]="measurement.waist" name="waist" onPaste="return false" onDrop="return false"> <span matSuffix>cm</span>
-		<mat-hint>Circumference</mat-hint> </mat-form-field>
+		 </mat-form-field>
 
-		<mat-form-field appearance="outline"> <mat-label>Upper Arm</mat-label> 
-		<input matInput type="text" appNumbersOnly id="upperArm" 
+		<mat-form-field appearance="outline"> <mat-label>Upper Arm</mat-label>
+		<input matInput type="text" appNumbersOnly id="upperArm"
 			[(ngModel)]="measurement.upperArm" name="upperArm" onPaste="return false" onDrop="return false"> <span
-			matSuffix>cm</span> <mat-hint>Circumference of left or
-		right arm</mat-hint> </mat-form-field>
+			matSuffix>cm</span></mat-form-field>
 		<br>
-		<mat-form-field appearance="outline"> <mat-label>Lower Arm</mat-label> 
-		<input matInput type="text" appNumbersOnly id="lowerArm" 
+		<mat-form-field appearance="outline"> <mat-label>Lower Arm</mat-label>
+		<input matInput type="text" appNumbersOnly id="lowerArm"
 			[(ngModel)]="measurement.lowerArm" name="lowerArm" onPaste="return false" onDrop="return false"> <span
-			matSuffix>cm</span> <mat-hint>Circumference of left or
-		right lower arm</mat-hint> </mat-form-field>
+			matSuffix>cm</span> </mat-form-field>
 
 		<mat-form-field appearance="outline"> <mat-label>Upper Leg</mat-label>
-		<input matInput type="text" appNumbersOnly id="upperLeg" 
+		<input matInput type="text" appNumbersOnly id="upperLeg"
 			[(ngModel)]="measurement.upperLeg" name="upperLeg" onPaste="return false" onDrop="return false"> <span
-			matSuffix>cm</span> <mat-hint>Circumference of left or
-		right leg</mat-hint> </mat-form-field>
+			matSuffix>cm</span>  </mat-form-field>
 		<br>
 		<mat-form-field appearance="outline"> <mat-label>Lower
-		Leg</mat-label> <input matInput type="text" appNumbersOnly id="lowerLeg" 
+		Leg</mat-label> <input matInput type="text" appNumbersOnly id="lowerLeg"
 			[(ngModel)]="measurement.lowerLeg" name="lowerLeg" onPaste="return false" onDrop="return false"> <span
-			matSuffix>cm</span> <mat-hint>Circumference of left or
-		right lower leg</mat-hint> </mat-form-field>
+			matSuffix>cm</span>  </mat-form-field>
 
-		<mat-form-field appearance="outline"> <mat-label>Heart Rate</mat-label> 
+		<mat-form-field appearance="outline"> <mat-label>Heart Rate</mat-label>
 		<input matInput type="text" appNumbersOnly id="restingHeartRate"
 			 [(ngModel)]="measurement.restingHeartRate"
-			name="restingHeartRate" onPaste="return false" onDrop="return false"> <span matSuffix>b/pm</span> <mat-hint>Sit
-		down for 5 minutes and then measure</mat-hint> </mat-form-field>
+			name="restingHeartRate" onPaste="return false" onDrop="return false"> <span matSuffix>b/pm</span>  </mat-form-field>
 		<div class="button">
 			<button  type="submit" class="btn btn-success" [disabled]="f.form.invalid" >Submit</button>
 		</div>

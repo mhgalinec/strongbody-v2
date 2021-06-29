@@ -24,7 +24,7 @@ export class MembershipListComponent implements OnInit {
   }
 
   updateMembership(id: number) {
-    this.router.navigate(['updateMembership', id]);
+    this.router.navigate(['update-membership', id]);
   }
 
 

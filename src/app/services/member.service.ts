@@ -7,20 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class MemberService {
  
-  private baseUrl = 'http://localhost:8080/strongbody-v2.0/src/members';
+  private baseUrl = 'http://localhost:8080/strongbody-v2.0/src/member';
 
   constructor(private http: HttpClient) { }
 
   getMemberList(): Observable<any>{
     
-    return this.http.get(`${this.baseUrl}`);
+    return this.http.get(`${this.baseUrl}/list`);
   }
 
   deleteMember(id:number):Observable<any>{
     return this.http.delete(`${this.baseUrl}/${id}`,{responseType:'text'});
   }
 
-  createMember(member: Object): Observable<Object>{
+  createMember(member: Object): Observable<any>{
     return this.http.post(`${this.baseUrl}`, member);
   }
 

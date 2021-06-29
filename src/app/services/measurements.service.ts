@@ -11,21 +11,21 @@ export class MeasurementsService {
 
   constructor(private http:HttpClient) { }
 
-    //Returns all measurements that a member has(as an array)
+    
     getMeasurements(id: number): Observable<any>{
 	  return this.http.get(`${this.baseUrl}/${id}`);
 	}
 	
 	//Returns a single measurement object(used in updateMeasurement)
 	getMeasurementForUpdate(id:number): Observable<any>{
-		return this.http.get(`http://localhost:8080/strongbody-v2.0/src/measurementUpdate/${id}`)
+		return this.http.get(`${this.baseUrl}/update/${id}`)
 	}
 	
 	createMeasurement(id:number,measurements:any): Observable<any>{
 		return this.http.post(`${this.baseUrl}/${id}`, measurements);
 	}
 	
-	updateMeasurement(id: number, value: any): Observable<Object>{
+	updateMeasurement(id: number, value: any): Observable<any>{
     	return this.http.put(`${this.baseUrl}/${id}`, value);
     }
 

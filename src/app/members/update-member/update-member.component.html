@@ -1,6 +1,4 @@
 <h4 class="title">{{member.fullName}}</h4>
-<div class="container">
-
 <form (ngSubmit)="onSubmit()" #f="ngForm" >
 
   <mat-form-field appearance="outline">
@@ -15,7 +13,7 @@
   	<mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
   <br>
-  
+
 
  <label id="sex-label">Sex</label>
 <mat-radio-group class="radio" aria-labelledby="sex-label" id="sex"  name="sex" [(ngModel)]="member.sex" required>
@@ -44,7 +42,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Contact Number</mat-label>
-    
+
     <input type="text" appNumbersOnly name="contactNumber" [(ngModel)]="member.contactNumber" pattern="[0-9]{4,16}" matInput placeholder="098555666" onPaste="return false" onDrop="return false" required>
     <mat-icon matSuffix>mode_edit</mat-icon>
   </mat-form-field>
@@ -53,7 +51,7 @@
 	<button [disabled]="f.form.invalid" type="submit" class="btn btn-success">Submit</button>
 </div>
 </form>
-</div>
+
 
 
 

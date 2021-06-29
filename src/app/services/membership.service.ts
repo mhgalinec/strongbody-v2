@@ -11,7 +11,7 @@ export class MembershipService {
   constructor(private http: HttpClient) { }
 
 
-  updateMembership(id: number, value: any): Observable<Object>{
+  updateMembership(id: number, value: any): Observable<any>{
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
 
@@ -22,7 +22,7 @@ export class MembershipService {
 
   //Get membership through membership id
   getMembershipForUpdate(id:number): Observable<any>{
-	return this.http.get(`http://localhost:8080/strongbody-v2.0/src/membershipUpdate/${id}`);
+	return this.http.get(`${this.baseUrl}/update/${id}`);
   }
 
   getMembershipList(): Observable<any>{

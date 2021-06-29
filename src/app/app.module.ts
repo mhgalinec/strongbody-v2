@@ -15,13 +15,23 @@ import { MembershipListComponent } from './membership/membership-list/membership
 import { UpdateMembershipComponent } from './membership/update-membership/update-membership.component';
 import { CreateMembershipComponent } from './membership/create-membership/create-membership.component';
 import { ShowMeasurementsComponent } from './measurements/show-measurements/show-measurements.component';
-import { CreateMeasurementsComponent } from './measurements/create-measurements/create-measurements.component';
-import { UpdateMeasurementsComponent } from './measurements/update-measurements/update-measurements.component';
+import { CreateMeasurementComponent } from './measurements/create-measurement/create-measurement.component';
+import { UpdateMeasurementComponent } from './measurements/update-measurement/update-measurement.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { NumbersOnlyDirective } from './numbers-only.directive';
 import { ConfirmationDialog } from './dialogs/confirmation-dialog.element';
 import { DialogElement } from './dialogs/dialog.element';
+import { CreateEquipmentComponent } from './equipment/create-equipment/create-equipment.component';
+import { EquipmentListComponent } from './equipment/equipment-list/equipment-list.component';
+import { UpdateEquipmentComponent } from './equipment/update-equipment/update-equipment.component';
+import { CreateScheduledServiceComponent } from './scheduled_services/create-scheduled-service/create-scheduled-service.component';
+import { UpdateScheduledServiceComponent } from './scheduled_services/update-scheduled-service/update-scheduled-service.component';
+import { ShowScheduledServiceComponent } from './scheduled_services/show-scheduled-services/show-scheduled-service.component';
+import { CreateUnplannedServiceComponent } from './unplanned_services/create-unplanned-service/create-unplanned-service.component';
+import { ShowUnplannedServicesComponent } from './unplanned_services/show-unplanned-services/show-unplanned-services.component';
+import { UpdateUnplannedServiceComponent } from './unplanned_services/update-unplanned-service/update-unplanned-service.component';
+
 
 @NgModule({
   declarations: [
@@ -34,11 +44,20 @@ import { DialogElement } from './dialogs/dialog.element';
     UpdateMembershipComponent,
     CreateMembershipComponent,
     ShowMeasurementsComponent,
-    CreateMeasurementsComponent,
-    UpdateMeasurementsComponent,
+    CreateMeasurementComponent,
+    UpdateMeasurementComponent,
     NumbersOnlyDirective,
-	ConfirmationDialog,
-	DialogElement
+	  ConfirmationDialog,
+	  DialogElement,
+	  CreateEquipmentComponent,
+	  EquipmentListComponent,
+	  UpdateEquipmentComponent,
+	  CreateScheduledServiceComponent,
+	  UpdateScheduledServiceComponent,
+	  ShowScheduledServiceComponent,
+	  CreateUnplannedServiceComponent,
+	  ShowUnplannedServicesComponent,
+	  UpdateUnplannedServiceComponent
   ],
   imports: [
     BrowserModule,
