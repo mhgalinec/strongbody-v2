@@ -42,11 +42,11 @@ public class MembershipController {
 	}
 	
 	
-	@GetMapping("/membershipUpdate/{id}")
+	@GetMapping("/membership/update/{id}")
 	public ResponseEntity<Membership> getMembershipById(@PathVariable(value="id") Long membershipId)
 		throws ResourceNotFoundException{
 		
-		Membership membership = membershipRep.findById(membershipId).orElseThrow(() -> new ResourceNotFoundException("Membership not found for ID:" + membershipId));
+		Membership membership = membershipRep.findById(membershipId).orElseThrow(() -> new ResourceNotFoundException("Can't get membership object - ID not found: :" + membershipId));
 		
 		return ResponseEntity.ok().body(membership);
 		
@@ -64,11 +64,9 @@ public class MembershipController {
 	@PutMapping("/membership/{id}")
 	public ResponseEntity<Membership> updateMembership(@PathVariable(value="id") Long membershipId,@Validated @RequestBody Membership membershipData)
 		throws ResourceNotFoundException{
+			
+		Membership membership = membershipRep.findById(membershipId).orElseThrow(() -> new ResourceNotFoundException("Can't get membership object for update - ID not found: " + membershipId));
 		
-		//The angular form will be populated with this membership
-		Membership membership = membershipRep.findById(membershipId).orElseThrow(() -> new ResourceNotFoundException("Membership not found with ID:" + membershipId));
-		
-		//The membershipData is the new data entered for the existing membership
 		membership.setRegistrationDate(membershipData.getRegistrationDate());
 		membership.setValidFrom(membershipData.getValidFrom());
 		membership.setValidThrough(membershipData.getValidThrough());
@@ -108,7 +106,6 @@ public class MembershipController {
 		//Deleting through foreign key because the PathVariable has the member_id in the url
 		membershipRep.deleteMembershipByForeignKey(memberID);
 	
-		//Set to true when the membership is deleted
 		Map<String,Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 

@@ -35,10 +35,10 @@ public class MeasurementController {
 	@Autowired
 	private MemberRepository memberRep;
 	
-	@GetMapping("/measurementUpdate/{id}")
+	@GetMapping("/measurements/update/{id}")
 	public ResponseEntity<Measurements> getMeasurementById(@PathVariable(value="id") Long measurementsID)
 			throws ResourceNotFoundException {
-		Measurements measurements = measurementRep.findById(measurementsID).orElseThrow(() -> new ResourceNotFoundException("Measurement not found for ID:" + measurementsID));
+		Measurements measurements = measurementRep.findById(measurementsID).orElseThrow(() -> new ResourceNotFoundException("Can't get measurement object - ID not found: " + measurementsID));
 		return ResponseEntity.ok().body(measurements);
 		
 	}
@@ -55,7 +55,7 @@ public class MeasurementController {
 	public ResponseEntity<Measurements> updateMeasurement(@PathVariable(value="id") Long measurementsID,@Validated @RequestBody Measurements measurementsData)
 			throws ResourceNotFoundException{
 		
-		Measurements measurements = measurementRep.findById(measurementsID).orElseThrow(() -> new ResourceNotFoundException("Measurement not found for ID:" + measurementsID));
+		Measurements measurements = measurementRep.findById(measurementsID).orElseThrow(() -> new ResourceNotFoundException("Can't get measurement object for update - ID not found: " + measurementsID));
 		
 		measurements.setMeasurementDate(measurementsData.getMeasurementDate());
 		measurements.setHeight(measurementsData.getHeight());
@@ -76,7 +76,7 @@ public class MeasurementController {
 			updatedMeasurements = measurementRep.save(measurements);
 		}
 		
-		return ResponseEntity.ok().body(updatedMeasurements);
+		return ResponseEntity.ok(updatedMeasurements);
 
 	}
 	
@@ -92,12 +92,11 @@ public class MeasurementController {
 		return measurementRep.save(measurements);
 	}
 	
-	@DeleteMapping("/measurements/{id}")
+	@DeleteMapping("/measurements{id}")
 	public Map<String,Boolean> deleteMeasurement(@PathVariable(value="id") Long measurementID)
 		throws ResourceNotFoundException{
 		
-		Measurements measurements = measurementRep.findById(measurementID).orElseThrow(() -> new ResourceNotFoundException("Measurement does not exist, id:" + measurementID));
-		System.out.println(measurementID);
+		Measurements measurements = measurementRep.findById(measurementID).orElseThrow(() -> new ResourceNotFoundException("Can't get measurement object to delete - ID not found: " + measurementID));
 		measurementRep.delete(measurements);		
 		
 		Map<String,Boolean> response = new HashMap<>();

@@ -29,39 +29,42 @@ public class MemberController {
 	@Autowired
 	private MemberRepository rep;
 	
-	@GetMapping("/members")
+	@GetMapping("/member/list")
 	public List<Member> getMembers(){
+
 		return rep.findAll();
 	}
 	
-	@GetMapping("/members/{id}")
+	@GetMapping("/member/{id}")
 	public ResponseEntity<Member> getMemberById(@PathVariable(value="id") Long memberID)
 		throws ResourceNotFoundException{
 		
-		Member member = rep.findById(memberID).orElseThrow(() -> new ResourceNotFoundException("Member not found for ID:" + memberID));
-		
+		Member member = rep.findById(memberID).orElseThrow(() -> new ResourceNotFoundException("Can't get member object - ID not found: " + memberID));
 		return ResponseEntity.ok().body(member);
+		
 		
 	}
 	
-	@PostMapping("/members")
+	@PostMapping("/member")
 	public Member createMember(@Validated @RequestBody Member member) {
 	
 		return rep.save(member);
 	
 	}
 	
-	@PutMapping("/members/{id}")
-	public ResponseEntity<Member> updateMember(@PathVariable(value="id") Long memberID,@Validated @RequestBody Member memberDetails)
+	@PutMapping("/member/{id}")
+	public ResponseEntity<Member> updateMember(@PathVariable(value="id") Long memberID,@Validated @RequestBody Member memberData)
 		throws ResourceNotFoundException{
-		Member member = rep.findById(memberID).orElseThrow(() -> new ResourceNotFoundException("Member not found with ID:" + memberID));
 		
-		member.setFullName(memberDetails.getFullName());
-		member.setDateOfBirth(memberDetails.getDateOfBirth());
-		member.setSex(memberDetails.getSex());
-		member.setContactNumber(memberDetails.getContactNumber());
-		member.setEmail(memberDetails.getEmail());
-		member.setDiet(memberDetails.getDiet());
+		
+		Member member = rep.findById(memberID).orElseThrow(() -> new ResourceNotFoundException("Can't get member object for update - ID not found: " + memberID));
+			
+		member.setFullName(memberData.getFullName());
+		member.setDateOfBirth(memberData.getDateOfBirth());
+		member.setSex(memberData.getSex());
+		member.setContactNumber(memberData.getContactNumber());
+		member.setEmail(memberData.getEmail());
+		member.setDiet(memberData.getDiet());
 	
 		Member updatedMember = null;
 		
@@ -74,10 +77,10 @@ public class MemberController {
 		
 	}
 	
-	@DeleteMapping("/members/{id}")
+	@DeleteMapping("/member/{id}")
 	public Map<String,Boolean> deleteMember(@PathVariable(value="id") Long memberID) 
 		throws ResourceNotFoundException{
-		Member member = rep.findById(memberID).orElseThrow(() -> new ResourceNotFoundException("Member not found with ID:" + memberID));
+		Member member = rep.findById(memberID).orElseThrow(() -> new ResourceNotFoundException("Can't get member object to delete - ID not found: " + memberID));
 		rep.delete(member);
 		
 		Map<String,Boolean> response = new HashMap<>();
