@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,6 +38,7 @@ public class ScheduledServiceController {
 	private EquipmentRepository equipmentRep;
 	
 	@GetMapping("/service/scheduled/update/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<ScheduledService> getServiceById(@PathVariable(value="id") Long scheduledServiceID)
 		throws ResourceNotFoundException{
 		ScheduledService service = serviceRep.findById(scheduledServiceID).orElseThrow(() -> new ResourceNotFoundException("Can't get scheduled service object - ID not found:  " + scheduledServiceID));
@@ -45,6 +47,7 @@ public class ScheduledServiceController {
 	}
 	
 	@GetMapping("/service/scheduled/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<ScheduledService> getServiceByForeignKey(@PathVariable(value="id") Long equipmentID)
 		throws ResourceNotFoundException{
 		
@@ -52,6 +55,7 @@ public class ScheduledServiceController {
 	}
 	
 	@PutMapping("/service/scheduled/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<ScheduledService> updateService(@PathVariable(value="id") Long serviceID,@Validated @RequestBody ScheduledService serviceData)
 		throws ResourceNotFoundException{
 		ScheduledService service = serviceRep.findById(serviceID).orElseThrow(() -> new ResourceNotFoundException("Can't get scheduled service object for update - ID not found:  " + serviceID));
@@ -72,6 +76,7 @@ public class ScheduledServiceController {
 	}
 	
 	@PostMapping("/service/scheduled/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ScheduledService createService(@PathVariable(value="id") Long equipmentID,@Validated @RequestBody ScheduledService service)
 		throws ResourceNotFoundException{
 		
@@ -84,6 +89,7 @@ public class ScheduledServiceController {
 	}
 	
 	@DeleteMapping("/service/scheduled/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String,Boolean> deleteService(@PathVariable(value="id") Long serviceID)
 		throws ResourceNotFoundException{
 		

@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,6 +37,7 @@ public class MeasurementController {
 	private MemberRepository memberRep;
 	
 	@GetMapping("/measurements/update/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Measurements> getMeasurementById(@PathVariable(value="id") Long measurementsID)
 			throws ResourceNotFoundException {
 		Measurements measurements = measurementRep.findById(measurementsID).orElseThrow(() -> new ResourceNotFoundException("Can't get measurement object - ID not found: " + measurementsID));
@@ -44,6 +46,7 @@ public class MeasurementController {
 	}
 	
 	@GetMapping("/measurements/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Measurements> getMeasurementsByForeignKey(@PathVariable(value="id") Long memberID){
 		
 		//Return a list of measurements that belong to a specific member using the member id
@@ -52,6 +55,7 @@ public class MeasurementController {
 	}
 	
 	@PutMapping("/measurements/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Measurements> updateMeasurement(@PathVariable(value="id") Long measurementsID,@Validated @RequestBody Measurements measurementsData)
 			throws ResourceNotFoundException{
 		
@@ -81,6 +85,7 @@ public class MeasurementController {
 	}
 	
 	@PostMapping("/measurements/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Measurements createMeasurement(@PathVariable(value="id") Long memberID,@Validated @RequestBody Measurements measurements) throws	
 		ResourceNotFoundException{
 		
@@ -93,6 +98,7 @@ public class MeasurementController {
 	}
 	
 	@DeleteMapping("/measurements{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String,Boolean> deleteMeasurement(@PathVariable(value="id") Long measurementID)
 		throws ResourceNotFoundException{
 		

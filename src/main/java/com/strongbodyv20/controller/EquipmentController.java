@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,11 +31,13 @@ public class EquipmentController {
 	private EquipmentRepository equipmentRep;
 
 	@GetMapping("/equipment/list")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Equipment> getEquipmentList(){
 		return equipmentRep.findAll();
 	}
 	
 	@GetMapping("/equipment/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<Equipment> getEquipmentById(@PathVariable(value="id") Long equipmentID)
 		throws ResourceNotFoundException{
 		Equipment equipment = equipmentRep.findById(equipmentID).orElseThrow(() -> new ResourceNotFoundException("Can't get equipment object - ID not found: " + equipmentID));
@@ -43,11 +46,13 @@ public class EquipmentController {
 	}
 	
 	@PostMapping("/equipment")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Equipment createEquipment(@Validated @RequestBody Equipment equipment) {
 		return equipmentRep.save(equipment);
 	}
 	
 	@PutMapping("/equipment/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Equipment> updateEquipment(@PathVariable(value="id") Long equipmentID, @Validated @RequestBody Equipment equipmentDetails)
 		throws ResourceNotFoundException{
 		
@@ -74,6 +79,7 @@ public class EquipmentController {
 	}
 	
 	@DeleteMapping("/equipment/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String,Boolean> deleteEquipment(@PathVariable(value="id") Long equipmentID)
 		throws ResourceNotFoundException{
 		

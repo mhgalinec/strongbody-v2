@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,12 +38,14 @@ public class MembershipController {
 	
 	
 	@GetMapping("/membership")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Membership> getMembership(){
 		return membershipRep.findAll();
 	}
 	
 	
 	@GetMapping("/membership/update/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Membership> getMembershipById(@PathVariable(value="id") Long membershipId)
 		throws ResourceNotFoundException{
 		
@@ -53,6 +56,7 @@ public class MembershipController {
 	}
 	
 	@GetMapping("/membership/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Membership getMembershipByForeignKey(@PathVariable(value="id") Long memberId)
 		throws ResourceNotFoundException{
 		
@@ -62,6 +66,7 @@ public class MembershipController {
 	
 	
 	@PutMapping("/membership/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Membership> updateMembership(@PathVariable(value="id") Long membershipId,@Validated @RequestBody Membership membershipData)
 		throws ResourceNotFoundException{
 			
@@ -85,6 +90,7 @@ public class MembershipController {
 	}
 	
 	@PostMapping("/membership/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Membership createMembership(@PathVariable(value="id") Long memberID ,@Validated @RequestBody Membership membership) throws ResourceNotFoundException {
 		
 		//Find the member we are creating the membership for
@@ -100,6 +106,7 @@ public class MembershipController {
 	
 	
 	@DeleteMapping("/membership/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String,Boolean> deleteMembership(@PathVariable(value="id") Long memberID)
 		throws ResourceNotFoundException{
 		

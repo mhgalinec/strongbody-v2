@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,12 +31,13 @@ public class MemberController {
 	private MemberRepository rep;
 	
 	@GetMapping("/member/list")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Member> getMembers(){
-
 		return rep.findAll();
 	}
 	
 	@GetMapping("/member/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<Member> getMemberById(@PathVariable(value="id") Long memberID)
 		throws ResourceNotFoundException{
 		
@@ -46,6 +48,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Member createMember(@Validated @RequestBody Member member) {
 	
 		return rep.save(member);
@@ -53,6 +56,7 @@ public class MemberController {
 	}
 	
 	@PutMapping("/member/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Member> updateMember(@PathVariable(value="id") Long memberID,@Validated @RequestBody Member memberData)
 		throws ResourceNotFoundException{
 		
@@ -78,6 +82,7 @@ public class MemberController {
 	}
 	
 	@DeleteMapping("/member/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String,Boolean> deleteMember(@PathVariable(value="id") Long memberID) 
 		throws ResourceNotFoundException{
 		Member member = rep.findById(memberID).orElseThrow(() -> new ResourceNotFoundException("Can't get member object to delete - ID not found: " + memberID));

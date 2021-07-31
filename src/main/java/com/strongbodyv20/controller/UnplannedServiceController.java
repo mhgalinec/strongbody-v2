@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,6 +37,7 @@ public class UnplannedServiceController {
 	private EquipmentRepository equipmentRep;
 	
 	@GetMapping("/service/unplanned/update/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<UnplannedService> getServiceById(@PathVariable(value="id") Long serviceID) throws ResourceNotFoundException{
 		
 		UnplannedService service = serviceRep.findById(serviceID).orElseThrow(() -> new ResourceNotFoundException("Can't get unplanned service object - ID not found: " + serviceID));;
@@ -44,12 +46,14 @@ public class UnplannedServiceController {
 	}
 	
 	@GetMapping("/service/unplanned/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<UnplannedService> getServiceByForeignKey(@PathVariable(value="id") Long serviceID) throws ResourceNotFoundException{
 		
 		return serviceRep.getServiceByForeignKey(serviceID);
 	}
 	
 	@PutMapping("/service/unplanned/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<UnplannedService> updateService(@PathVariable(value="id") Long serviceID,@Validated @RequestBody UnplannedService serviceData)
 		throws ResourceNotFoundException{
 		
@@ -72,6 +76,7 @@ public class UnplannedServiceController {
 	}
 	
 	@PostMapping("/service/unplanned/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public UnplannedService createService(@PathVariable(value="id") Long equipmentID, @Validated @RequestBody UnplannedService service)
 		throws ResourceNotFoundException{
 		
@@ -84,6 +89,7 @@ public class UnplannedServiceController {
 	}
 	
 	@DeleteMapping("/service/unplanned/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String,Boolean> deleteService(@PathVariable(value="id") Long serviceID) throws ResourceNotFoundException{
 		
 		UnplannedService service = serviceRep.findById(serviceID).orElseThrow(() -> new ResourceNotFoundException("Can't get unplanned service object to delete - ID not found:  " + serviceID));
