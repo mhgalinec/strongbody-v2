@@ -17,8 +17,8 @@
         <button mat-raised-button class="btn" (click)="showScheduledServices(equipment.id,equipment.name)" color="primary">Scheduled Services</button>
         <button mat-raised-button class="btn" (click)="showUnplannedServices(equipment.id,equipment.name)" color="primary">Unplanned Services</button>
 
-				<button mat-raised-button class="btn" (click)="updateEquipment(equipment.id)" color="accent">Update</button>
-        <button mat-raised-button class="btn" (click)="deleteEquipment(equipment.id)" color="warn">Delete</button>
+				<button authorizationDirective mat-raised-button class="btn" (click)="updateEquipment(equipment.id)" color="accent">Update</button>
+        <button authorizationDirective mat-raised-button class="btn" (click)="deleteEquipment(equipment.id)" color="warn">Delete</button>
 			</div>
 		</td>
 		</ng-container>

@@ -23,9 +23,9 @@
 				<button mat-raised-button class="btn" color="primary"
 					(click)="showMeasurementsByMemberID(member.id,member.fullName)">Measurements</button>
 
-				<button mat-raised-button class="btn" color="accent"
+				<button authorizationDirective mat-raised-button class="btn" color="accent"
 					(click)="updateMember(member.id)">Update</button>
-				<button mat-raised-button class="btn" color="warn"
+				<button authorizationDirective mat-raised-button class="btn" color="warn"
 					(click)="deleteMember(member.id)">Delete</button>
 
 			</div>

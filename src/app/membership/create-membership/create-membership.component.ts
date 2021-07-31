@@ -16,6 +16,7 @@ export class CreateMembershipComponent implements OnInit {
   memberName:string;
   membership: Membership;
 
+
   range = new FormGroup({
 	  validFrom:new FormControl(),
 	  validThrough:new FormControl()
@@ -30,6 +31,7 @@ export class CreateMembershipComponent implements OnInit {
     //Get the member ID and name for the member you want to create the membership
     this.id = this.route.snapshot.params['id'];
 	  this.memberName = this.route.snapshot.params['name'];
+    this.membership.paymentStatus = "Awaiting Payment";
 
   }
 

@@ -52,6 +52,9 @@
       <mat-option value="Annual">Annual</mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-form-field hidden="true">
+      <input matInput id="paymentStatus" name="paymentStatus"  [(ngModel)]="membership.paymentStatus">
+  </mat-form-field>
   <br>
   <div class="button">
 	<button type="submit" class="btn btn-success" [disabled]="f.form.invalid">Submit</button>

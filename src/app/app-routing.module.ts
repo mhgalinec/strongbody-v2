@@ -19,31 +19,39 @@ import { CreateScheduledServiceComponent } from './scheduled_services/create-sch
 import { ShowUnplannedServicesComponent } from './unplanned_services/show-unplanned-services/show-unplanned-services.component';
 import { CreateUnplannedServiceComponent } from './unplanned_services/create-unplanned-service/create-unplanned-service.component';
 import { UpdateUnplannedServiceComponent } from './unplanned_services/update-unplanned-service/update-unplanned-service.component';
-
-
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_helpers/auth.guard';
+import { HomeComponent } from './home/home.component';
+import { RoleGuard } from './_helpers/role.guard';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'member-list', pathMatch: 'full' },
-  { path: 'member-list', component: MemberListComponent },
-  { path: 'add-member', component: CreateMemberComponent },
-  { path: 'update-member/:id', component: UpdateMemberComponent },
-  { path: 'membership/:id/:name', component: ShowMembershipComponent} ,
-  { path: 'membership', component: MembershipListComponent},
-  { path: 'update-membership/:id/:name', component: UpdateMembershipComponent},
-  { path: 'create-membership/:id/:name', component: CreateMembershipComponent},
-  { path: 'measurements/:id/:name', component: ShowMeasurementsComponent},
-  { path: 'create-measurement/:id/:name', component:CreateMeasurementComponent},
-  { path: 'update-measurement/:id/:name', component:UpdateMeasurementComponent},
-  { path: 'equipment-list', component:EquipmentListComponent },
-  { path: 'update-equipment/:id', component:UpdateEquipmentComponent},
-  { path: 'add-equipment', component:CreateEquipmentComponent},
-  { path: 'scheduled-services/:id/:name', component:ShowScheduledServiceComponent},
-  { path: 'create-scheduled-service/:id/:name', component:CreateScheduledServiceComponent},
-  { path: 'update-scheduled-service/:id/:name', component:UpdateScheduledServiceComponent},
-  { path: 'unplanned-services/:id/:name', component:ShowUnplannedServicesComponent},
-  { path: 'create-unplanned-service/:id/:name', component:CreateUnplannedServiceComponent},
-  { path: 'update-unplanned-service/:id/:name', component:UpdateUnplannedServiceComponent}
+  { path: 'login', component:LoginComponent},
+  { path:'', canActivate:[AuthGuard], children:[
+    { path: 'home',component:HomeComponent},
+    { path: 'register',component:RegisterComponent,canActivate:[RoleGuard]},
+    { path: 'member-list', component: MemberListComponent },
+    { path: 'add-member', component: CreateMemberComponent, canActivate:[RoleGuard] },
+    { path: 'update-member/:id', component: UpdateMemberComponent, canActivate:[RoleGuard] },
+    { path: 'membership/:id/:name', component: ShowMembershipComponent} ,
+    { path: 'membership', component: MembershipListComponent},
+    { path: 'update-membership/:id/:name', component: UpdateMembershipComponent, canActivate:[RoleGuard]},
+    { path: 'create-membership/:id/:name', component: CreateMembershipComponent, canActivate:[RoleGuard]},
+    { path: 'measurements/:id/:name', component: ShowMeasurementsComponent},
+    { path: 'create-measurement/:id/:name', component:CreateMeasurementComponent, canActivate:[RoleGuard]},
+    { path: 'update-measurement/:id/:name', component:UpdateMeasurementComponent, canActivate:[RoleGuard]},
+    { path: 'equipment-list', component:EquipmentListComponent },
+    { path: 'update-equipment/:id', component:UpdateEquipmentComponent, canActivate:[RoleGuard]},
+    { path: 'add-equipment', component:CreateEquipmentComponent, canActivate:[RoleGuard]},
+    { path: 'scheduled-services/:id/:name', component:ShowScheduledServiceComponent},
+    { path: 'create-scheduled-service/:id/:name', component:CreateScheduledServiceComponent, canActivate:[RoleGuard]},
+    { path: 'update-scheduled-service/:id/:name', component:UpdateScheduledServiceComponent, canActivate:[RoleGuard]},
+    { path: 'unplanned-services/:id/:name', component:ShowUnplannedServicesComponent},
+    { path: 'create-unplanned-service/:id/:name', component:CreateUnplannedServiceComponent, canActivate:[RoleGuard]},
+    { path: 'update-unplanned-service/:id/:name', component:UpdateUnplannedServiceComponent, canActivate:[RoleGuard]}
+  ]}
+
 ];
 
 @NgModule({

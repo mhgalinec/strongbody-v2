@@ -4,7 +4,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CreateMemberComponent } from './members/create-member/create-member.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
@@ -31,6 +31,14 @@ import { ShowScheduledServiceComponent } from './scheduled_services/show-schedul
 import { CreateUnplannedServiceComponent } from './unplanned_services/create-unplanned-service/create-unplanned-service.component';
 import { ShowUnplannedServicesComponent } from './unplanned_services/show-unplanned-services/show-unplanned-services.component';
 import { UpdateUnplannedServiceComponent } from './unplanned_services/update-unplanned-service/update-unplanned-service.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { AuthGuard } from './_helpers/auth.guard';
+import { HomeComponent } from './home/home.component';
+import { AuthorizationDirective } from './authorization.directive';
+import { RoleGuard } from './_helpers/role.guard';
+
 
 
 @NgModule({
@@ -47,6 +55,7 @@ import { UpdateUnplannedServiceComponent } from './unplanned_services/update-unp
     CreateMeasurementComponent,
     UpdateMeasurementComponent,
     NumbersOnlyDirective,
+    AuthorizationDirective,
 	  ConfirmationDialog,
 	  DialogElement,
 	  CreateEquipmentComponent,
@@ -57,7 +66,11 @@ import { UpdateUnplannedServiceComponent } from './unplanned_services/update-unp
 	  ShowScheduledServiceComponent,
 	  CreateUnplannedServiceComponent,
 	  ShowUnplannedServicesComponent,
-	  UpdateUnplannedServiceComponent
+	  UpdateUnplannedServiceComponent,
+	  LoginComponent,
+	  RegisterComponent,
+	  HomeComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -69,7 +82,7 @@ import { UpdateUnplannedServiceComponent } from './unplanned_services/update-unp
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders,AuthGuard,RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

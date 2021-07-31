@@ -6,8 +6,10 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { animate, state, style, transition, trigger} from '@angular/animations';
 import { ConfirmationDialog } from 'src/app/dialogs/confirmation-dialog.element';
-import { TEXT_COLUMN_OPTIONS } from '@angular/cdk/table';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { AuthorizationDialog } from 'src/app/dialogs/authorization-dialog';
 
+const ROLE_ADMIN = 'ROLE_ADMIN';
 
 @Component({
   selector: 'app-member-list',
@@ -25,8 +27,10 @@ export class MemberListComponent implements OnInit {
 
   members: Observable<Member[]>;
   expandedElement: Member | null;
+  userRole:string[] = [];
 
-  constructor(private memberService: MemberService, private router: Router,public dialog:MatDialog) { }
+  constructor(private tokenStorage:TokenStorageService,private memberService: MemberService,
+              private router: Router,public dialog:MatDialog) { }
 
   columns:any[]=[
     { name:'fullName', display:'Full Name'},
@@ -40,27 +44,27 @@ export class MemberListComponent implements OnInit {
   displayedColumns:any[] = this.columns.map(column => column.name);
 
   ngOnInit() {
+    this.userRole = this.tokenStorage.getUser().roles;
     //Shows member list when the page is loaded
     this.reloadData();
-
   }
 
   reloadData() {
     this.members = this.memberService.getMemberList();
   }
 
-
   deleteMember(id: number) {
-	const dialogRef = this.dialog.open(ConfirmationDialog);
 
-	dialogRef.afterClosed().subscribe(result =>{
-		if(result === true){
-			this.memberService.deleteMember(id).subscribe(()=>{
-				this.reloadData();
-			});
-		}
-		//else do nothing
-	},error => console.log(error));
+	  const dialogRef = this.dialog.open(ConfirmationDialog);
+
+	  dialogRef.afterClosed().subscribe(result =>{
+		   if(result === true){
+			   this.memberService.deleteMember(id).subscribe(()=>{
+			    this.reloadData();
+		    });
+		  }
+		   //else do nothing
+	   },error => console.log(error));
 
   }
 

@@ -18,8 +18,8 @@
         [attr.colspan]="displayedColumns.length">
         <div class="element-detail"
           [@detailExpand]="service == expandedElement ? 'expanded' : 'collapsed'">
-          <button mat-raised-button class="btn btn-update" color="accent" (click)="updateUnplannedService(service.id,equipmentName)">Update</button>
-          <button mat-raised-button class="btn btn-delete" color="warn" (click)="deleteUnplannedService(service.id)">Delete</button>
+          <button authorizationDirective mat-raised-button class="btn btn-update" color="accent" (click)="updateUnplannedService(service.id,equipmentName)">Update</button>
+          <button authorizationDirective mat-raised-button class="btn btn-delete" color="warn" (click)="deleteUnplannedService(service.id)">Delete</button>
         </div>
       </td>
       </ng-container>
@@ -35,13 +35,13 @@
         class="detail-row"></tr>
       </table>
     </div>
-    <button mat-raised-button class="btn btn-create" color="accent" (click)="createUnplannedService(id,equipmentName)">Add Service</button>
+    <button authorizationDirective mat-raised-button class="btn btn-create" color="accent" (click)="createUnplannedService(id,equipmentName)">Add Service</button>
   </div>
 
   <ng-template #empty>
     <h4 class="title">{{equipmentName}}</h4>
     <h4 class="alert alert-warning">No unplanned services set for this equipment.</h4>
-    <button mat-raised-button class="btn" color="accent" (click)="createUnplannedService(id,equipmentName)">Add Service</button>
+    <button authorizationDirective mat-raised-button class="btn" color="accent" (click)="createUnplannedService(id,equipmentName)">Add Service</button>
   </ng-template>
 
 </div>

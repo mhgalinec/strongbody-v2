@@ -18,8 +18,8 @@
 			[attr.colspan]="displayedColumns.length">
 			<div class="element-detail"
 				[@detailExpand]="measurement == expandedElement ? 'expanded' : 'collapsed'">
-				<button mat-raised-button class="btn btn-update" color="accent" (click)="updateMeasurement(measurement.id,memberName)">Update</button>
-				<button mat-raised-button class="btn btn-delete" color="warn" (click)="deleteMeasurement(measurement.id)">Delete</button>
+				<button authorizationDirective mat-raised-button class="btn btn-update" color="accent" (click)="updateMeasurement(measurement.id,memberName)">Update</button>
+				<button authorizationDirective mat-raised-button class="btn btn-delete" color="warn" (click)="deleteMeasurement(measurement.id)">Delete</button>
 			</div>
 		</td>
 		</ng-container>
@@ -42,12 +42,12 @@
   <h4 class="disclaimer">Units are measured in centimeters, kilograms, % and bpm (beats per minute)</h4>
 
 </div>
-<button mat-raised-button class="btn btn-create" color="accent" (click)="createMeasurement(id,memberName)">Add Measurement</button>
+<button authorizationDirective mat-raised-button class="btn btn-create" color="accent" (click)="createMeasurement(id,memberName)">Add Measurement</button>
 </div>
 
 <ng-template #empty>
 	<h4 class="alert alert-warning" >No measurements avilable. Would you like to create one?</h4>
-	<button mat-raised-button class="btn" color="accent" (click)="createMeasurement(id,memberName)">Add Measurement</button>
+	<button authorizationDirective mat-raised-button class="btn" color="accent" (click)="createMeasurement(id,memberName)">Add Measurement</button>
 </ng-template>
 </div>
 

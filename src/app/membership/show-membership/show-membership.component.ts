@@ -15,7 +15,7 @@ export class ShowMembershipComponent implements OnInit {
   id: number;
   memberName:string;
   membership: Membership[];
-  displayedColumns:string[] =['registrationDate','validFrom','validThrough','membershipType','serviceLevel'];
+  displayedColumns:string[] =['registrationDate','validFrom','validThrough','membershipType','serviceLevel','paymentStatus'];
 
   constructor(private membershipService: MembershipService, private router: Router, private route: ActivatedRoute,
               public dialog:MatDialog) { }
