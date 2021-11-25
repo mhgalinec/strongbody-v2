@@ -9,7 +9,7 @@
 
 - The app has a authentication system based on the user roles(USER,ADMIN) created with JWT
 
-- USER role is limited to reading while the ADMIN role has the full CRUD authentication. 
+- USER role is limited to reading only while the ADMIN role has the full CRUD authentication. 
 
 - New users or admins can be registered from within the application, although only the admin can add new user/admin as mentioned above.
 
