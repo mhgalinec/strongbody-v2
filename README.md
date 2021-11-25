@@ -55,3 +55,8 @@
 
 - Visual Studio
 
+
+
+## Planned Future Updates
+  
+- Payment options for members
